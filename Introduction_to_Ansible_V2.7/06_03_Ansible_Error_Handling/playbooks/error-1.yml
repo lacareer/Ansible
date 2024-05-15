@@ -1,0 +1,19 @@
+# Another example of handling error
+# THIS PLAYBOOK WAS NOT TESTED
+
+# error-1.yml
+---
+hosts: TheNameOfAnsibleHost
+become: yes
+task:
+  - name: Install Software
+    yum:
+      name: broke
+      state: latest
+    ignore_errors: yes
+
+  - name: Run Utility
+    command: ./do-stuff.sh what
+    register: cmd_output
+    changed_when: " 'CHANGED' in the cmd_output.stout "
+    failed_when: " 'FAIL' in the cmd_output.stout "

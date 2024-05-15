@@ -1,0 +1,15 @@
+# async.yml
+---
+- hosts: ServerName/Groupname
+  tasks:
+    - name: Run sleep.sh
+      command: ./sleep.sh
+      async: 60
+      poll: 10
+      run_once: yes
+
+    - name: Install mariaDB
+      package:
+        name: mariadb
+        state: latest
+        become: yes

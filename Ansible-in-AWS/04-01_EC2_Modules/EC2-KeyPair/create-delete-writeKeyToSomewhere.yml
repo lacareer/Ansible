@@ -1,0 +1,32 @@
+# create-delete-writeKeyToSomewhere.yml
+---
+- hosts: localhost
+  gather_facts: no
+  vars:
+    - ansible_python_interpreter: /usr/bin/python3
+  var_files:
+    - keys.yml
+
+  tasks:
+    - name: Delete existing keypair
+      amazon.aws.ec2_key:
+        aws_access_key: "{{AWS_ACCESS_KEY_ID}}"
+        aws_secret_key: "{{AWS_SECRET_ACCESS_KEY}}"
+        ec2_region: "{{AWS_REGION}}"
+        name: my_keypair
+        state: absent
+
+    - name: Create a new keypair
+      amazon.aws.ec2_key:
+        aws_access_key: "{{AWS_ACCESS_KEY_ID}}"
+        aws_secret_key: "{{AWS_SECRET_ACCESS_KEY}}"
+        ec2_region: "{{AWS_REGION}}"
+        name: my_keypair
+      register: keypair
+
+    - name: Write the new keypair to a location
+      lineinfile:
+        create: yes
+        path: ~/Downloads/my_keypair.pem
+        line: "{{keypair.key.private_key}}"
+        mode: 0600

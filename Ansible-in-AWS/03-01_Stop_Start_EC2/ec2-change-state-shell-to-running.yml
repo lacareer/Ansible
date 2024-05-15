@@ -1,0 +1,13 @@
+#  ec2-change-state-shell-to-running.yml
+---
+- hosts: localhost
+  gather_facts: yes
+
+  tasks:
+    - name: Change instance state from running to stopped using tag
+      local_action: ec2_instance
+      args:
+        state: running
+        instance_ids: i-024b030df5d46c6d1
+        tags:
+          Name: Demo-ansible

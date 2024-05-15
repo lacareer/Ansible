@@ -1,0 +1,8 @@
+working_dir: C:\Users\coguk\OneDrive\Desktop\All_Training\UdemyWeb\A-Cloud-Guru\Ansibles\Ansible-Playbook-Deep-Dive\03_03_Basic-Playbook-loops
+
+service_list:
+  - httpd
+  - nfs
+  # - elinks
+  # - nmap-ncat
+  # - bind-utils

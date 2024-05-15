@@ -1,0 +1,49 @@
+#  #  ec2-deprovision.yml.yml
+---
+- hosts: localhost
+  gather_facts: yes
+
+  vars:
+    - ansible_python_interpreter: /usr/bin/python3
+  var_files:
+    - keys.yml
+  tasks:
+    - name: Get instances info
+      amazon.aws.ec2_instance_info:
+        aws_access_key: "{{AWS_ACCESS_KEY_ID}}"
+        aws_secret_key: "{{AWS_SECRET_ACCESS_KEY}}"
+        ec2_region: "{{AWS_REGION}}"
+        filters:
+          # use either of the followings
+          # instance-state-name:["running"] # could be an array: ["running","stopped","pending" etc]
+          # or
+          # availability-zone: us-west-1
+          # or
+          "tag:Name":"Demo"
+      register: ec2_facts
+    - debug:
+        var: ec2_facts.instances[0].instance_id
+
+    - name: Remove tags 
+      amazon.aws.ec2_tag:
+        aws_access_key: "{{AWS_ACCESS_KEY_ID}}"
+        aws_secret_key: "{{AWS_SECRET_ACCESS_KEY}}"
+        ec2_region: "{{AWS_REGION}}"
+        resource: "{{ec2_facts.instances[0].instance_id}}"
+        tags:
+          Name: 
+        state: absent
+
+    - name: Terminate instances
+       amazon.aws.ec2_tag:
+        aws_access_key: "{{AWS_ACCESS_KEY_ID}}"
+        aws_secret_key: "{{AWS_SECRET_ACCESS_KEY}}"
+        ec2_region: "{{AWS_REGION}}"
+        state: absent
+        instance_id:
+          - "{{ec2_facts.instances[0].instance_id}}"
+      register: ec2 
+    - debug:
+        var: ec2
+
+       

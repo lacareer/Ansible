@@ -1,0 +1,48 @@
+#  ec2-provision.yml
+---
+- hosts: localhost
+  gather_facts: yes
+
+  vars:
+    - ansible_python_interpreter: /usr/bin/python3
+  var_files:
+    - keys.yml
+  tasks:
+    - name: Provision ec2_instance
+      amazon.aws.ec2_instance:
+        aws_access_key: "{{AWS_ACCESS_KEY_ID}}"
+        aws_secret_key: "{{AWS_SECRET_ACCESS_KEY}}"
+        ec2_region: "{{AWS_REGION}}"
+        instance_type: t2.micro
+        keypair: ansiblekey
+        image: ami-0022f774911c1d690
+        assign_public_ip: yes
+        vpc_subnet_id: subnet-4fc7c502
+        group: jenkins-master
+        wait: True
+        exact_count: 1
+        count_tags:
+          Name: Ansible-Provisioned-instance
+      register: ec2
+    - debug:
+        var: ec2
+
+    - name: Add host to Inventory
+      add_host:
+        hostname: "{{item.public_ip}}"
+        groupname: demogroup
+        ansible_ssh_common_args: "-o StrickHostKeyChecking=no"
+        ansible_ssh_private_key_file: ~/.ssh/ansiblekey.pem
+      loop: "{{ec2.instances}}"
+
+- hosts: demogroup
+  gather_facts: no
+  remote_user: ec2-user
+
+  tasks:
+    - name: Wait for SSH Connection
+      wait_for_connection:
+        delay: 5
+        timeout: 90
+    - name: Check host status by ping
+      ping:

@@ -1,0 +1,19 @@
+#  template.yml
+---
+- hosts: localhost
+  gather_facts: no
+  # This lines below should be commented out because it may throw a Sudo password error
+  # when you are using localhost, like my machine
+  become: yes
+
+  vars:
+    code_name: whisky
+    version: 4.2
+
+  task:
+    - name: deploy to config file
+      template:
+        src: config.j2
+        dest: config
+      delegate_to: localhost
+      run_once: true

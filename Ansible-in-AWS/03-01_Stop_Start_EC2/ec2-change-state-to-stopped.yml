@@ -1,0 +1,21 @@
+#  ec2-change-state-to-stopped.yml
+---
+- hosts: loadbalancers
+  gather_facts: yes
+
+  vars:
+    - ansible_python_interpreter: /usr/bin/python3
+  var_files:
+    - keys.yml
+  tasks:
+    - name: Change instance state from running to stopped using tag
+      amazon.aws.ec2_instance:
+        aws_access_key: "{{AWS_ACCESS_KEY_ID}}"
+        aws_secret_key: "{{AWS_SECRET_ACCESS_KEY}}"
+        ec2_region: "{{AWS_REGION}}"
+        instance_ids: i-024b030df5d46c6d1
+        state: stopped
+        wait: True
+        region: us-east-1
+        tags:
+          Name: Demo-ansible

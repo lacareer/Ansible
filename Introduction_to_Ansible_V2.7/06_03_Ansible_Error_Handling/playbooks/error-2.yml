@@ -1,0 +1,25 @@
+# Another example of handling error
+# THIS PLAYBOOK WAS NOT TESTED
+
+# error-2.yml
+---
+hosts: TheNameOfAnsibleHost
+become: yes
+vars:
+  target_service: httpd
+task:
+  - name: Install Software
+    # TRY
+    block:
+      - service:
+          name: "{{target_service}}"
+          state: started
+        register: service_status
+    # CATCH
+    rescue:
+      - debug:
+          var: service_status
+    # Run no matter what
+    always:
+      - debug:
+          msg: "Tried to ensure service is running"

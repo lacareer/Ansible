@@ -1,0 +1,9 @@
+# async.yml
+---
+- hosts: ServerName/Groupname
+  become: true
+  tasks:
+    - name: Run sleep.sh
+      command: ./sleep.sh
+      async: 60
+      poll: 10

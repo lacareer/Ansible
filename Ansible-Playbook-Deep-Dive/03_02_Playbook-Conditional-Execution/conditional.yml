@@ -1,0 +1,17 @@
+# conditional.yml
+---
+- host: webservers
+  gather_facts: yes
+  become: true
+
+  vars:
+    target_file: /tmp/hostname
+  tasks:
+    - name: Gather file information
+      stat:
+        path: "{{target_file}}"
+      register: fileName
+
+    - name: Rename host file when found
+      command: mv "{{target_file}}" /tmp/copied
+      when: fileName.stat.exists

@@ -1,0 +1,8 @@
+ProxyRequests off
+<Proxy balancer://webcluster >
+    BalancerMember http://3.212.247.66
+    BalancerMember http://52.2.190.61
+    BalancerMember http://3.210.23.189
+    
+    ProxySet lbmethod=byrequests
+</Proxy>

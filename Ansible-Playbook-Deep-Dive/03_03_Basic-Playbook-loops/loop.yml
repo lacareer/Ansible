@@ -1,0 +1,17 @@
+# loop.yml
+---
+- host: webservers
+  gather_facts: yes
+  become: true
+
+  tasks:
+    - name: Install softwares
+      yum:
+        name: "{{ item }}"
+
+      loop:
+        - httpd
+        - nfs-utils
+        - elinks
+        - nmap-ncat
+        - bind-utils

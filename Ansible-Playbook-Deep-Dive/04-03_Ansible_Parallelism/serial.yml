@@ -1,0 +1,12 @@
+# async.yml
+---
+- hosts: GroupServerName/serverName
+  become: true
+  max_fail_percentage: 10
+  serial: 1
+
+  tasks:
+    - name: Install elinks
+      package:
+        name: elinks
+        state: latest
