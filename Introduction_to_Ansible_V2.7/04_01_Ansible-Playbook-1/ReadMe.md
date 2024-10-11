@@ -47,3 +47,26 @@ Notes for yum-update.yml playbook
 # 'remove' = removes the package if installed
 
 # 'absent' = removes the package if installed
+
+
+Whether to install (present or installed, latest), or remove (absent or removed) a package.
+
+"present" and "installed" will simply ensure that a desired package is installed.
+
+"latest" will update the specified package if it’s not of the latest available version.
+
+"absent" and "removed" will remove the specified package.
+
+Default is None, however in effect the default action is present unless the autoremove option is enabled for this module, then absent is inferred.
+
+Choices:
+
+    "absent"
+    
+    "installed"
+    
+    "latest"
+    
+    "present"
+    
+    "removed"

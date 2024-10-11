@@ -1,6 +1,9 @@
 <!-- MAKE SURE YOU ARE IN THE PARENT DIRECTORY BEFORE RUNNING ANY OF THE ANSIBLE COMMAND ON THE COMMAND LINE -->
 
 <!-- BEFORE RUUNING THE COMMAND BELOW MAKE SURE THE AWS EC2 INSTANCES ARE IN RUNNING MODE -->
+# Discovering variables: facts and magic variables: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_vars_facts.html
+
+# https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#ansible-variable-precedence
 
 Notes for ping.yml playbook
 
@@ -47,6 +50,32 @@ Notes for yum-update.yml playbook
 # 'remove' = removes the package if installed
 
 # 'absent' = removes the package if installed
+
+
+
+Whether to install (present or installed, latest), or remove (absent or removed) a package.
+
+"present" and "installed" will simply ensure that a desired package is installed.
+
+"latest" will update the specified package if it’s not of the latest available version.
+
+"absent" and "removed" will remove the specified package.
+
+Default is None, however in effect the default action is present unless the autoremove option is enabled for this module, then absent is inferred.
+
+Choices:
+
+    "absent"
+    
+    "installed"
+    
+    "latest"
+    
+    "present"
+    
+    "removed"
+
+
 
 Note that the following playbook files, when ran, restarts Apache whether an intsllation is done or not. The next lesson deals with 'service handlers' that allows us to detect changes and to determine if Apache should be restarted or not
 
@@ -102,7 +131,8 @@ Notes for setup-app.yml
 
 Notes for config/lb-config_dynamicallyTheBest.j2
 
-# # This Jinja2 uses configuration for the load balancer is dynamic as it looks through the webserver array/group to get the the ip address of each as shown below. In {{hostvars[hosts]['ansible_host']}} concern yourself with only 'host' as this refers to the webserver group discovered by Ansible when it runs - 'hostvars' and 'ansible_host' are generated at run time by Ansible
+# # This Jinja2 uses configuration for the load balancer is dynamic as it looks through the webserver array/group to get the the ip address of each as shown below. In {{hostvars[hosts]['ansible_host']}} concern yourself with only 'hosts' as this refers to the webserver group discovered by Ansible when it runs - 'hostvars' and 'ansible_host' are generated at run time by Ansible 
+# (e.g when you run "ansible-inventory -i hosts-dev --list: you will see something like hostsvar[app1]['anisble_host'] )
 
     ProxyRequests off
 

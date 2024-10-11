@@ -23,6 +23,6 @@ This playbook uses Ansible templating to replace variable placeholders with the 
 
           delegate_to: localhost
 
-# Ansible also allows you to stipulate how many time you want the a tsk to run
+# Ansible also allows you to stipulate how many time you want the a task to run
 
           run_once: true

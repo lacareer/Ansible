@@ -2,7 +2,11 @@
 
 <!-- BEFORE RUUNING THE COMMAND BELOW MAKE SURE THE AWS EC2 INSTANCES ARE IN RUNNING MODE -->
 
-# Reference for Ansible Varobales: https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html
+# https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#ansible-variable-precedence
+
+# Discovering variables: facts and magic variables: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_vars_facts.html
+
+# Reference for Ansible Variables: https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html
 
 Notes on setup-app.yml (default variables)
 

@@ -13,7 +13,8 @@
 
     ansible -m ping all
 
-# You would realize that ansible can only connect to the local host but not to the 3 remote servers as it returns errors for those. Hence the configuration in the ansible.cfg file below
+# You would realize that ansible can only connect to the local (if you do not have ansible.cfg file configured) host but 
+# not to the 3 remote servers as it returns errors for those. Hence the configuration in the ansible.cfg file below
 
     [defaults]
     inventory = ./hosts-dev
@@ -25,11 +26,13 @@
     [ssh_connection]
     ssh_args = -o ControlMaster=no
 
-# With the configurations above, the below command returns a successful ping to all servers including the local host:
+# With the configurations above, the below command returns a successful ping to all servers (except a server is added to the host that does not exist or can't be reached 
+# using our aws ssh key) including the local host:
 
     ansible -m ping all
 
-# To get the type of OS of the remote server/machine run the commands. In this case it returns a result for each showing the the servers are Linux systems. This command is ran on the remote server and not on the local host.
+# To get the type of OS of the remote server/machine run the commands. In this case it returns a result for each showing the the servers are Linux systems. 
+# This command is ran on the remote server and not on the local host.
 
     ansible -m shell -a "uname" webservers:loadbalancers
 
