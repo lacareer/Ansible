@@ -1,0 +1,7 @@
+# Passing multiple inventory sources
+You can target multiple inventory sources (directories, dynamic inventory scripts or files supported by inventory plugins) at the same time by giving multiple inventory parameters from the command line or by configuring ANSIBLE_INVENTORY. 
+This can be useful when you want to target normally separate environments, like staging and production, at the same time for a specific action.
+
+To target two inventory sources from the command line:
+
+    ansible-playbook get_logs.yml -i staging -i production

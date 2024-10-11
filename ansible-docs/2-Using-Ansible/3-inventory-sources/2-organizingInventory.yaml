@@ -1,0 +1,42 @@
+Organizing inventory in a directory
+
+# You can consolidate multiple inventory sources in a single directory. 
+# The simplest version of this is a directory with multiple files instead of a single inventory file. 
+# A single file gets difficult to maintain when it gets too long. 
+# If you have multiple teams and multiple automation projects, having one inventory file per team or project lets everyone easily find the hosts and groups that matter to them.
+
+# You can also combine multiple inventory source types in an inventory directory. 
+# This can be useful for combining static and dynamic hosts and managing them as one inventory. 
+# The following inventory directory combines an inventory plugin source, a dynamic inventory script, and a file with static hosts:
+
+
+inventory/
+  openstack.yml          # configure inventory plugin to get hosts from OpenStack cloud
+  dynamic-inventory.py   # add additional hosts with dynamic inventory script
+  on-prem                # add static hosts and groups
+  parent-groups          # add static hosts and groups
+  
+  
+# You can target this inventory directory as follows:
+
+    "ansible-playbook example.yml -i inventory"
+    
+    
+# You can also configure the inventory directory in your ansible.cfg file 
+# (as shown in the ansible.cfg file in theis directory although we did not actually create "inventory" folder and content as shown in the structure above ) . 
+
+
+Managing inventory load order
+
+# Ansible loads inventory sources in ASCII order according to the file names. 
+# If you define parent groups in one file or directory and child groups in other files or directories, the files that define the child groups must be loaded first. 
+# If the parent groups are loaded first, you will see the error Unable to parse /path/to/source_of_parent_groups as an inventory source.
+
+# For example, if you have a file called groups-of-groups that defines a production group with child groups defined in a file called on-prem, Ansible cannot parse the production group. 
+# To avoid this problem, you can control the load order by adding prefixes to the files:
+
+inventory/
+  01-openstack.yml          # configure inventory plugin to get hosts from OpenStack cloud
+  02-dynamic-inventory.py   # add additional hosts with dynamic inventory script
+  03-on-prem                # add static hosts and groups
+  04-groups-of-groups       # add parent groups

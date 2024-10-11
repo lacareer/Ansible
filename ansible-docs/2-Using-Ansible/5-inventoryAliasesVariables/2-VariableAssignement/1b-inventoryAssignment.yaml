@@ -1,0 +1,23 @@
+# You can store variable values that relate to a specific host or group in inventory. 
+# To start with, you may add variables directly to the hosts and groups in your main inventory file.
+
+# We document adding variables in the main inventory file for simplicity. However, storing variables in separate host and group variable files is a more robust approach to describing your system policy. 
+# Setting variables in the main inventory file is only a shorthand. See Organizing host and group (https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#splitting-out-vars) variables for guidelines on storing variable values in individual files in the ‘host_vars’ directory. 
+# See Organizing host and group variables for details.
+
+
+host1:
+  hosts:
+    one.example.com:
+
+host2:
+  hosts:
+    two.example.com:
+    
+atlanta:
+  hosts:
+    host1:
+    host2:
+  vars:
+    ntp_server: ntp.atlanta.example.com
+    proxy: proxy.atlanta.example.com

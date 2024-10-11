@@ -1,0 +1,5 @@
+dbserver02:
+  hosts:
+    jumper02:
+      ansible_port: 5555
+      ansible_host: 172.19.160.197
