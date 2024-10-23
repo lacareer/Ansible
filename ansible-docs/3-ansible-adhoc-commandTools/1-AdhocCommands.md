@@ -149,7 +149,7 @@ To ensure a package is not installed:
     
 Ansible has modules for managing packages under many platforms. If there is no module for your package manager, you can install packages using the command module or create a module for your package manager.
 
-<!--Managing users and groups-->
+<!--Managing services-->
 You can create, manage, and remove user accounts on your managed nodes with ad hoc tasks:
 
     ansible webservers -m ansible.builtin.service -a "name=httpd state=started"
@@ -162,8 +162,14 @@ Ensure a service is stopped:
 
     ansible webservers -m ansible.builtin.service -a "name=httpd state=stopped"
     
+<!--Managing users and groups-->
+
+    ansible all -m ansible.builtin.user -a "name=foo password=<encrypted password here>"
+
+    ansible all -m ansible.builtin.user -a "name=foo state=absent"
+    
 <!--Gathering facts-->
-Facts represent discovered variables about a system. You can use facts to implement conditional execution of tasks but also just to get ad hoc information about your systems. To see all facts:
+Facts represent discovered variables about a system. You can use facts to implement conditional execution of tasks but also just to get adhoc information about your systems. To see all facts:
 
     ansible all -m ansible.builtin.setup
     

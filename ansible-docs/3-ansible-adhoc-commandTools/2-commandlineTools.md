@@ -6,7 +6,7 @@ Each page contains a description of the utility and a listing of supported param
 
 You should not run most Ansible CLI tools in parallel against the same targets.
 
-For each specific command line options, please visit the associated url belwo:
+For each specific command line options, please visit the associated url below:
 
 - ansible (see: https://docs.ansible.com/ansible/latest/cli/ansible.html )
 - ansible-config (see: https://docs.ansible.com/ansible/latest/cli/ansible-config.html )
