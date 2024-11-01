@@ -1,3 +1,5 @@
+*** READ UP MORE ON NETWORK HERE: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html#managing-network-interactions
+
 <!--Managing network interactions-->
 
 These filters help you with common network tasks.
@@ -24,5 +26,3 @@ For example, to get the IP address itself from a CIDR, you can use:
     {{ '192.0.2.1/24' | ansible.utils.ipaddr('address') }}
     
 # => 192.0.2.1
-
-*** READ UP MORE ON NETWORK HERE: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html#managing-network-interactions
