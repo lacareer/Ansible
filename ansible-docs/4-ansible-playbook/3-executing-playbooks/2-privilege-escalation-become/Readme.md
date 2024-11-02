@@ -13,7 +13,7 @@ These variables and directives are independent. For example, setting become_user
         
         - become_user: set to user with desired privileges — the user you become, NOT the user you login as. Does NOT imply become: true, to allow it to be set at the host level. The default value is root.
         
-        - become_method: (at play or task level) overrides the default method set in ansible.cfg, set to use any of the Become plugins.
+        - become_method: (at play or task level) overrides the default method set in ansible.cfg, set to use any of the Become plugins (e.g., sudo, su, pbrun, doas, etc.).
         
         - become_flags: (at play or task level) permit the use of specific flags for the tasks or role. One common use is to change the user to nobody when the shell is set to nologin. Added in Ansible 2.2.
 
@@ -60,3 +60,13 @@ You can define different become options for each managed node or group. You can 
 For example, if you want to run all tasks as root on a server named webserver, but you can only connect as the manager user, you could use an inventory entry like this:
 
             webserver ansible_user=manager ansible_become=true
+            
+***Become command-line options***
+
+        --ask-become-pass, -K: ask for the privilege escalation password; does not imply become will be used. Note that this password will be used for all hosts.
+        
+        --become, -b: run operations with become (no password implied)
+        
+        --become-method=BECOME_METHOD: privilege escalation method to use (default=sudo), valid choices: [ sudo | su | pbrun | pfexec | doas | dzdo | ksu | runas | machinectl ]
+        
+        --become-user=BECOME_USER: run operations as this user (default=root), does not imply --become/-b            
