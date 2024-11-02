@@ -23,4 +23,4 @@
 
     command: mv "{{target_file}}" /tmp/copied
 
-# To run again recreat the file in the path shown in the playbook and give it a new name if you want to move it to the same '/tmp' so that there is no name clash
+# To run again recreate the file in the path shown in the playbook and give it a new name if you want to move it to the same '/tmp' so that there is no name clash

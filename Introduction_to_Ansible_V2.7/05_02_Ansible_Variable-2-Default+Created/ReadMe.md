@@ -2,7 +2,11 @@
 
 <!-- BEFORE RUUNING THE COMMAND BELOW MAKE SURE THE AWS EC2 INSTANCES ARE IN RUNNING MODE -->
 
-# Reference for Ansible Varobales: https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html
+# Discovering variables: facts and magic variables: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_vars_facts.html
+
+# https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#ansible-variable-precedence
+
+# Reference for Ansible Variables: https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html
 
 # To see all metadata, in json format, gathered by Ansible that could be used as a variable for each server or group of servers run any of the below from any directory:
 

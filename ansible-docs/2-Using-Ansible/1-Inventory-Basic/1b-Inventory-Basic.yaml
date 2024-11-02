@@ -1,0 +1,22 @@
+# The simplest inventory is a single file with a list of hosts and groups. 
+# The default location for this file is /etc/ansible/hosts. You can specify a different inventory file at the command line using the -i <path> option or in configuration using inventory.
+
+# You can create your inventory file in one of many formats, depending on the inventory plugins you have. 
+# The most common formats are INI and YAML. A basic YAML /etc/ansible/hosts might look like this:
+
+# The headings in brackets are group names, which are used in classifying hosts and deciding what hosts you are controlling at what times and for what purpose. 
+# Group names should follow the same guidelines as Creating valid variable names.
+
+
+ungrouped:
+  hosts:
+    172.19.160.245:
+webservers:
+  hosts:
+    172.19.160.197:
+dbservers:
+  hosts:
+    172.19.160.245:
+local:
+  hosts:
+    control ansible_connection=local:

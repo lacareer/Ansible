@@ -27,8 +27,9 @@ In this exercise we will be working on the check-status.yml file to see how erro
 
 # If there is a failure when the above playbook is ran a '.retry' file is created with a name corresonding to the playbook file name, in this case 'check-status.retry'
 
-# In case there are many servers and in the event of failure as shown above in only certain servers, you can make the playbook run on the host where the failure occurred for a certain/max number of times until it succeeds. It will not run on the host where it successfully ran before, just on the host where it failed (where limit recieved the host where the retry should be done)
+# In case there are many servers and in the event of failure as shown above in only certain servers, you can make the playbook run on the host where the failure occurred for a certain/max number of times until it succeeds. 
+  It will not run on the host where it successfully ran before, just on the host where it failed (where limit recieved the host where the retry should be done)
 
-# Limit and rerey reference: https://ansible-tips-and-tricks.readthedocs.io/en/latest/ansible/commands/
+# Limit and retry reference: https://ansible-tips-and-tricks.readthedocs.io/en/latest/ansible/commands/
 
     ansible-playbook --limit error.yml --limit "host1, host2, etc"

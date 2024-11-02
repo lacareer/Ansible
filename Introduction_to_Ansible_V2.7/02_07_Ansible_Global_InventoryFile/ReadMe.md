@@ -20,9 +20,9 @@
 
 # Now run the below to ssh into all the remote servers
 
-    ansible --list-host all (returns app1, app2, lb1)
+    ansible --list-host all (returns app1, app2, lb1, local node [control])
 
-    ansible --list-host * (usings ansible patterns and returns app1, app2, lb1)
+    ansible --list-host "*" (usings ansible patterns and returns app1, app2, lb1, local node [control])
 
     ansible --list-host webservers:loadbalancers (usings ansible patterns and returns app1, app2, lb1)
 

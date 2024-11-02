@@ -6,13 +6,20 @@
 
 # Ansible galaxy for creating roles: https://galaxy.ansible.com/
 
-Ansible has a predefined folder structure for roles. These folders includes: default(contains default variables), files(contains the required files like the index.php in our case), handlers, meta, task(contains all the task for the role in main.yml), tests, and vars(contains other variables) folders.
+Ansible has a predefined folder structure for roles. These folders includes: 
+    default(contains default variables), 
+    files(contains the required files like the index.php in our case), 
+    handlers, 
+    meta,
+    task(contains all the task for the role in main.yml), 
+    tests, and 
+    vars(contains other variables) folders.
 
 # To create a webserver role in the 06-01 folder, run the command below. We have already copied the index.php, host-dev and ansible-cfg files into the directory:
 
     ansible-galaxy role roles/webserver init
 
-# Note that the setup-app.yml has now being changed to use roles. All variable have been moved into the variabale folder, all task into the task folder, and all handlers into the handlers folder.
+# Note that the setup-app.yml has now being changed to use roles. All variable have been moved into the variable folder, all task into the task folder, and all handlers into the handlers folder.
 
 # The setup-app.yml only has the the below to call the roles and run the playbook
 
@@ -26,4 +33,4 @@ Ansible has a predefined folder structure for roles. These folders includes: def
 
     ansible-playbook setup-app.yml
 
-# Anisble is going to call the webserver role and and run all the task using the files, variable etc.
+# Ansible is going to call the webserver role and and run all the task using the files, variable etc.

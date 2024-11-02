@@ -1,6 +1,9 @@
 <!-- MAKE SURE YOU ARE IN THE PARENT DIRECTORY BEFORE RUNNING ANY OF THE ANSIBLE COMMAND ON THE COMMAND LINE -->
 
 <!-- BEFORE RUUNING THE COMMAND BELOW MAKE SURE THE AWS EC2 INSTANCES ARE IN RUNNING MODE -->
+# Discovering variables: facts and magic variables: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_vars_facts.html
+
+# https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#ansible-variable-precedence
 
 # Reference for handlers: https://docs.ansible.com/ansible/latest/user_guide/playbooks_handlers.html
 

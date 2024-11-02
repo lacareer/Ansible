@@ -1,8 +1,11 @@
 <!-- MAKE SURE YOU ARE IN THE PARENT DIRECTORY BEFORE RUNNING ANY OF THE ANSIBLE COMMAND ON THE COMMAND LINE -->
 
 <!-- BEFORE RUUNING THE COMMAND BELOW MAKE SURE THE AWS EC2 INSTANCES ARE IN RUNNING MODE -->
+# Discovering variables: facts and magic variables: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_vars_facts.html
 
-# Reference for Ansible Varobales: https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html
+# https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#ansible-variable-precedence
+
+# Reference for Ansible Variables: https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html
 
 # To see all metadata, in json format, gathered by Ansible that could be used as a variable for each server or group of servers run any of the below from any directory:
 
@@ -14,7 +17,8 @@
 
 Notes on setup-app.yml (default variables)
 
-# Now that we can see some metadata for each remote server, we can create a variable with it. This file is same as in the previous lab, 04_04, but with this new line that makes use of Ansible default variable called {{ ansible_hostname }} and {{hostvars['localhost']['ansible_default_ipv4']['address']}}. The code copies the 'content' to the '/var/www/html/info.php' where 'info.php is created with the copy command
+# Now that we can see some metadata for each remote server, we can create a variable with it. 
+# This file is same as in the previous lab, 04_04, but with this new line that makes use of Ansible default variable called {{ ansible_hostname }} and {{hostvars['localhost']['ansible_default_ipv4']['address']}}. The code copies the 'content' to the '/var/www/html/info.php' where 'info.php is created with the copy command
 
     - name: Create simple info page
         copy:

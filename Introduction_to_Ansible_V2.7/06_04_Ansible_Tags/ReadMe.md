@@ -2,7 +2,11 @@ You can use tags to run or skip a particular task/s in our playbook.
 
 In this exercise we will be working with the setup-app.yml file in the playbook directory.
 
-# We have added tags to this two Ansible task as shown below. Also note that a task can have more than one tag.
+# We have added tags to this two Ansible task as shown below. Also note that a task can have more than one tag. 
+# e.g like below:
+                  tags: 
+                    - install
+                    - fsinstall
 
      tasks:
       - name: Upload application file
